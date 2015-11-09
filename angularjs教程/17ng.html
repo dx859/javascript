@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope','$interval',function($scope,$interval){
+	var iNow = 5;
+	$scope.text = iNow+'秒';
+	$scope.isDisabled = true;
+	
+	//setInterval -> $scope.$apply()
+	//$timeout   $interval
+	
+	var timer = $interval(function(){
+		iNow--;
+		$scope.text = iNow+'秒';
+		
+		if(iNow == 0){
+			$interval.cancel(timer);
+			$scope.text = '可以点击啦';
+			$scope.isDisabled = false;
+		}
+		
+	},1000);
+
+}]);
+
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	<input type="button" ng-value="text" ng-disabled="isDisabled">
+    <input type="text" value="{{text}}" ng-readonly="isDisabled">
+    <input type="checkbox" value="{{text}}" ng-checked="isDisabled">
+</div>
+<script>
+alert(1);
+</script>
+</body>
+</html>

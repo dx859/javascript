@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="http://cdn.bootcss.com/angular.js/1.3.8/angular.min.js"></script>
+<script src="http://cdn.bootcss.com/angular.js/1.3.8/angular-resource.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',['ngResource']);
+
+m1.controller('Aaa',['$scope','$resource',function($scope,$resource){
+	
+	
+	var objRe = $resource(':name.:aaa',{aaa : 'json'},{});
+	
+	//console.log(objRe.get());
+	
+	$scope.data = objRe.get({name : 'lisi'},function(){},function(){});
+	
+}]);
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	{{data.name}}
+</div>
+</body>
+</html>

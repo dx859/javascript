@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+
+/*m1.factory('myService',function(){
+	
+	return {
+		name : 'hello',
+		show : function(){
+			return this.name + ':angular';
+		}
+	};
+	
+});
+
+m1.controller('Aaa',['$scope','myService',function($scope,myService){
+	
+	console.log(myService.show());
+	
+}]);*/
+
+/*m1.factory('myRandomNum',function(){
+	
+	return function(num1,num2){
+		return Math.random()*(num2 - num1) + num1;
+	};
+	
+});
+
+m1.controller('Aaa',['$scope','myRandomNum',function($scope,myRandomNum){
+	
+	console.log( myRandomNum(-3,6) );
+	
+}]);*/
+
+/*m1.factory('myService',function(){
+	
+	return {
+		name : 'hello',
+		show : function(){
+			return this.name + ':angular';
+		}
+	};
+	
+});*/
+
+/*m1.provider('myService',function(){
+	
+	return {
+		name : 'hello',	
+		$get : function(){	
+			return {
+				name : this.name,
+				show : function(){
+					return this.name + ':angular';
+				}
+			};
+			
+		}
+	};
+	
+});
+
+m1.config(['myServiceProvider',function(myServiceProvider){
+	
+	console.log(myServiceProvider);
+	
+	myServiceProvider.name = 'hi';
+	
+}]);
+
+m1.controller('Aaa',['$scope','myService',function($scope,myService){
+	
+	console.log(myService.show());
+	
+}]);*/
+
+m1.provider('myRandomNum',function(){
+	
+	return {
+		bolInt : false,
+		int : function(argBol){
+			if(argBol){
+				this.bolInt = true;
+			}
+			else{
+				this.bolInt = false;
+			}
+		},
+		$get : function(){
+			var This = this;
+			return function(num1,num2){
+				return This.bolInt ? Math.round(Math.random()*(num2 - num1)) + num1 : Math.random()*(num2 - num1) + num1;
+			};
+		}
+	};
+	
+});
+
+m1.config(['myRandomNumProvider',function(myRandomNumProvider){
+	
+	myRandomNumProvider.int(false);
+	
+}]);
+
+m1.controller('Aaa',['$scope','myRandomNum',function($scope,myRandomNum){
+	
+	console.log( myRandomNum(-3,6) );
+	
+}]);
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+   
+</div>
+</body>
+</html>

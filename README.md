@@ -1,2 +1,1 @@
 # javascirpt
-# javascript

@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="angular.min.js"></script>
+<script src="service.js"></script>
+<script>
+
+
+var m2 = angular.module('myApp',['module1']);
+
+m1.config(['myServiceProvider',function(myServiceProvider){
+	
+	myServiceProvider.name = 'hi';
+	
+}]);
+
+m2.controller('Aaa',['$scope','myService',function($scope,myService){
+	
+	console.log(myService.show());
+	
+}]);
+
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+   
+</div>
+</body>
+</html>

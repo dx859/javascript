@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="angular.min.js"></script>
+<script src="http://cdn.bootcss.com/angular.js/1.3.0-beta.13/angular-sanitize.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',['ngSanitize']);
+m1.controller('Aaa',['$scope',function($scope){
+	
+	$scope.text = '<h1>hello</h1>';
+	
+
+}]);
+
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	<!--<div ng-bind="text"></div>
+    <div ng-bind-template="{{text}},{{text}}"></div>
+    <div ng-bind-html="text"></div>-->
+    <div ng-cloak>{{text}}</div>
+    <div ng-non-bindable>{{text}}</div>
+</div>
+<script>
+//alert(1);
+</script>
+</body>
+</html>

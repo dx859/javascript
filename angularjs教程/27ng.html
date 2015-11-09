@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.directive('myHello',function(){
+	return {
+		restrict : 'AECM',   //区分大小写，而且是可以组合使用的
+		replace : true,
+		template : '<div>hello angular</div>'
+	};
+});
+m1.controller('Aaa',['$scope',function($scope){
+	
+	
+	
+}]);
+
+
+
+</script>
+</head>
+
+<body>
+<my-hello></my-hello>
+<p my-hello></p>
+<!--<p class="hello"></p>
+ directive:hello -->
+
+
+<div ng-controller="Aaa">
+    
+</div>
+</body>
+</html>

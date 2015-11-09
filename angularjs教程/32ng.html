@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 div,#div2 div{ width:200px; height:200px; border:1px red solid; display:none;}
+#div1 input.active , #div2 input.active{ background:red;}
+</style>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.directive('hello',function(){
+	return {
+		restrict : 'E',   
+		replace : true,
+		transclude : true,
+		controller : function($scope){
+			//$scope.name = 'miaov';
+			this.name = 'miaov';
+			this.show = function(){};
+		},
+		template : '<div>hello angular<h1 ng-transclude></h1></div>'
+	};
+});
+m1.directive('hi',function(){
+	return {
+		restrict : 'E',   
+		replace : true,
+		require : '?^hello', 
+		template : '<span>hi angular</span>',
+		link : function(scope,element,attr,reController){
+			console.log( reController );
+		}
+	};
+});
+
+m1.controller('Aaa',['$scope',function($scope){
+	
+}]);
+
+
+</script>
+</head>
+
+<body ng-controller="Aaa">
+<hello>
+	<hi></hi>
+</hello>
+</body>
+</html>

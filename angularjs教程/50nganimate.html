@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.box{ width:200px; height:200px; background:red; transition:1s all;}
+.box.ng-enter{ opacity:0;}
+.box.ng-enter-active{ opacity:1;}
+.box.ng-leave{ opacity:1;}
+.box.ng-leave-active{ opacity:0;}
+</style>
+<script src="angular.min.js"></script>
+<script src="http://cdn.bootcss.com/angular.js/1.2.9/angular-animate.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',['ngAnimate']);
+m1.controller('Aaa',['$scope',function($scope){
+	
+	$scope.bBtn = true;
+	
+}]);
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	<input type="checkbox" ng-model="bBtn">
+    <div ng-if="bBtn" class="box"></div>
+</div>
+</body>
+</html>

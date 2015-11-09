@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html ng-app>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="angular.min.js"></script>
+<script>
+
+function Aaa($scope,$timeout){
+	$scope.name = 'hello';
+	setTimeout(function(){
+		//$scope.name = 'hi';
+		$scope.$apply(function(){
+			$scope.name = 'hi';
+		});
+	},2000);
+	/*$timeout(function(){
+		$scope.name = 'hi';
+	},2000);*/
+	
+	$scope.show = function(){
+		$scope.name = 'hi';
+	};
+	
+}
+
+</script>
+</head>
+
+<body>
+<!--<div ng-controller="Aaa" ng-click="name='hi'">-->
+<div ng-controller="Aaa" ng-click="show()">
+	<p>{{name}}</p>
+</div>
+
+</body>
+</html>

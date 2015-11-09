@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="angular.min.js"></script>
+<script src="http://cdn.bootcss.com/angular.js/1.2.9/angular-route.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',['ngRoute']);
+
+m1.config(['$routeProvider',function($routeProvider){
+	
+	$routeProvider
+		.when('/aaa/:num',{
+			template : '<p>首页的内容</p>{{name}}',
+			controller : 'Aaa'
+		})
+		.when('/bbb',{
+			template : '<p>学员的内容</p>{{name}}',
+			controller : 'Bbb'
+		})
+		.when('/ccc',{
+			template : '<p>课程的内容</p>{{name}}',
+			controller : 'Ccc'
+		})
+		.otherwise({
+			redirectTo : '/aaa'
+		});
+	
+}]);
+
+m1.run(['$rootScope',function($rootScope){
+	
+	$rootScope.$on('$routeChangeStart',function(event,current,pre){
+		console.log(event);
+		console.log(current);
+		console.log(pre);
+	});
+	
+}]);
+
+m1.controller('Aaa',['$scope','$location','$routeParams',function($scope,$location,$routeParams){
+	
+	$scope.name = 'hello';
+	$scope.$location = $location;
+	
+	console.log( $routeParams );
+	
+}]);
+m1.controller('Bbb',['$scope',function($scope){
+	
+	$scope.name = 'hi';
+	
+}]);
+m1.controller('Ccc',['$scope',function($scope){
+	
+	$scope.name = '你好';
+	
+}]);
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+   <a href="" ng-click="$location.path('aaa/123')">首页</a>
+   <a href="" ng-click="$location.path('bbb')">学员</a>
+   <a href="" ng-click="$location.path('aaa/456')">课程</a>
+   <div ng-view></div>
+</div>
+</body>
+</html>

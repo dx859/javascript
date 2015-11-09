@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#parent div{ width:300px; height:500px; border:1px #000 solid; margin:20px;}
+#parent ul{ width:200px; position:fixed; top:0; right:0;}
+</style>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+
+m1.config(['$anchorScrollProvider',function($anchorScrollProvider){
+	
+	$anchorScrollProvider.disableAutoScrolling();
+	
+}]);
+
+m1.controller('Aaa',['$scope','$location','$anchorScroll',function($scope,$location,$anchorScroll){
+	
+	$scope.change = function(id){
+		
+		$location.hash(id);
+		$anchorScroll();
+		
+	};
+	
+}]);
+
+</script>
+</head>
+
+<body>
+<div id="parent" ng-controller="Aaa">
+	<ul>
+    	<li ng-repeat="id in [1,2,3,4,5]" ng-click="change('div'+id)">{{id}}aaaaaaaaaa</li>
+    </ul>
+    <div ng-repeat="id in [1,2,3,4,5]" ng-attr-id="div{{id}}">{{id}}</div>
+</div>
+</body>
+</html>

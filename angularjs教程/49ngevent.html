@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope',function($scope){
+	
+	$scope.count = 0;
+	
+	$scope.$on('myEvent',function(event){
+		
+		$scope.count++;
+		
+		//console.log( event.targetScope == event.currentScope );
+		
+		//console.log(event.name);
+		
+		event.stopPropagation();
+		
+	});
+	
+}]);
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	{{count}}
+    <div ng-controller="Aaa" ng-click="$emit('myEvent')">
+        {{count}}
+        <div ng-controller="Aaa">
+            {{count}}
+        </div>
+    </div>
+</div>
+</body>
+</html>

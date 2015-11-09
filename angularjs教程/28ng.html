@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+#div1 div{ width:200px; height:200px; border:1px red solid; display:none;}
+#div1 input.active{ background:red;}
+</style>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.directive('myTab',function(){
+	return {
+		restrict : 'E',   
+		replace : true,
+		/*template : '<div id="div1">\
+					<input class="active" type="button" value="1">\
+					<input type="button" value="2">\
+					<input type="button" value="3">\
+					<div style="display:block">11111111</div>\
+					<div>22222222</div>\
+					<div>33333333</div>\
+				</div>'*/
+		templateUrl : 'temp2.html'
+	};
+});
+
+
+
+
+</script>
+</head>
+
+<body>
+<my-tab></my-tab>
+<!--<div id="div1">
+	<input class="active" type="button" value="1">
+    <input type="button" value="2">
+    <input type="button" value="3">
+    <div style="display:block">11111111</div>
+    <div>22222222</div>
+    <div>33333333</div>
+</div>-->
+</body>
+</html>

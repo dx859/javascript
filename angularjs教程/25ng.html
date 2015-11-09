@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+input.ng-valid{ border:1px green solid; background:green;}
+input.ng-invalid{ border:1px red solid; background:red;}
+</style>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope',function($scope){
+	
+	$scope.text = 'hello';
+	
+}]);
+
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+    <form novalidate name="myForm">
+    	<input type="text" name="myText" ng-model="text" required ng-minlength="5" ng-pattern="/^[a-zA-Z]+$/">
+        <div>{{ myForm.myText.$valid }}</div>
+        <div>{{ myForm.myText.$invalid }}</div>
+        <div>{{ myForm.myText.$pristine }}</div>
+        <div>{{ myForm.myText.$dirty }}</div>
+        <div>{{ myForm.myText.$error }}</div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.red{ background:red;}
+.yellow{ background:yellow;}
+</style>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope',function($scope){
+	
+	$scope.colors = [
+		{ name : 'red' },
+		{ name : 'yellow' },
+		{ name : 'blue' }
+	];
+	
+}]);
+
+
+
+</script>
+</head>
+
+<body>
+<div ng-app="myApp" ng-controller="Aaa">
+	<a href="">{{myColor.name}}</a>
+    <select ng-options=" color.name for color in colors " ng-model="myColor">
+    </select>
+    <form novalidate>
+    	<input type="email">
+    </form>
+</div>
+<a href="">bbbbbbb</a>
+</body>
+</html>

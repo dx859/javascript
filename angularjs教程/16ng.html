@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.active1{ background:red;}
+.active2{ background:blue;}
+</style>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope',function($scope){
+	
+	$scope.dataList = [
+		'aaaaa' , 'bbbbb' , 'cccccc' , 'dddddd' , 'eeeeee'
+	];
+
+}]);
+
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	
+    <input type="checkbox" ng-model="aaa">
+    <select>
+    	<option>11111</option>
+        <option ng-selected="aaa">22222</option>
+    </select>
+    
+    <input type="text" ng-change="bbb='hello'" ng-model="bbb">{{bbb}}<br>
+    <input type="text" value="aasdassssssss" ng-paste="ccc=true">{{ccc}}
+</div>
+
+
+
+</body>
+</html>

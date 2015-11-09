@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.red{ background:red;}
+.yellow{ background:yellow;}
+</style>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope',function($scope){
+	$scope.text = 'hello';
+	$scope.style = "{color:'red',background:'yellow'}";
+	$scope.sClass = "{red:true,yellow:true}";
+	$scope.url = "http://www.baidu.com";
+}]);
+
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+    <div ng-class="{{sClass}}">{{text}}</div>
+    <div ng-style="{{style}}">{{text}}</div>
+    <a ng-href="{{url}}">aaaaaaa</a>
+    <a ng-attr-href="{{url}}" ng-attr-title="{{text}}" ng-attr-class="" ng-attr-style="">aaaaaaa</a>
+</div>
+<script>
+//alert(1);
+</script>
+</body>
+</html>

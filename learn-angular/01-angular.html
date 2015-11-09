@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+  <meta charset="UTF-8">
+  <title>angular-clock</title>
+  <script src="angular/angular.js"></script>
+  <script type="text/javascript">
+  angular.module('myApp', []).controller('MyController',function($scope){
+    $scope.clock = {
+      now: new Date()
+    }
+
+    var updateClock = function() {
+    	$scope.clock.now = new Date();
+    }
+    setInterval(function() {
+    	// 定时器要用$apply监听
+    	$scope.$apply(updateClock);
+    	// updateClock()
+    }, 1000);
+  	
+  });
+  </script>
+</head>
+
+<body>
+  <div ng-controller="MyController">
+    <h1>Hello {{ clock.now }}</h1>
+  </div>
+</body>
+
+</html>

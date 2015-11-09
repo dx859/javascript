@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.red{ background:red;}
+.yellow{ background:yellow;}
+</style>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope',function($scope){
+	
+	$scope.bBtn = true;
+	
+}]);
+
+
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	<input type="checkbox" ng-model="bBtn">
+    <!--<div ng-show="bBtn">aaaaaaaaaaaa</div>-->
+    <!--<div ng-if="bBtn">aaaaaaaaaaaa</div>-->
+    <div ng-switch on="bBtn">
+    	<p ng-switch-default>默认的效果</p>
+        <p ng-switch-when="false">切换的效果</p>
+    </div>
+    
+    <details ng-open="bBtn">
+        <summary>Copyright 2011.</summary>
+        <p>All pages and graphics on this web site are the property of W3School.</p>
+    </details>
+    
+</div>
+
+
+
+</body>
+</html>

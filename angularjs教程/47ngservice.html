@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="angular.min.js"></script>
+<script>
+
+/*var m1 = angular.module('myApp',[]);
+
+m1.service('myService',FnService);
+
+function FnService(){
+	this.name = 'hello';
+}
+FnService.prototype.age = 20;
+
+m1.controller('Aaa',['$scope','myService',function($scope,myService){
+	
+	console.log(myService.name);
+	console.log(myService.age);
+	
+}]);*/
+
+var m1 = angular.module('myApp',[]);
+
+m1.constant('myService','hello angular');
+//m1.value('myService','hello angular');
+m1.config(['myService',function(myService){
+	console.log(myService);
+}]);
+
+m1.controller('Aaa',['$scope','myService',function($scope,myService){
+	
+	console.log(myService);
+	
+}]);
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+   
+</div>
+</body>
+</html>

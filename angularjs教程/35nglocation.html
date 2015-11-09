@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="angular.min.js"></script>
+<script>
+
+var m1 = angular.module('myApp',[]);
+m1.controller('Aaa',['$scope','$location',function($scope,$location){
+	
+	//var a = $location.absUrl();
+	$location.path('aaa/bbb/ccc').replace();
+	$location.hash('hello');
+	$location.search({'age':'20'});
+	var a = $location.protocol();
+	console.log(a);
+	
+}]);
+
+</script>
+</head>
+
+<body>
+<div ng-controller="Aaa">
+	
+</div>
+</body>
+</html>

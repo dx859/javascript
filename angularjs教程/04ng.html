@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html ng-app>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<script src="angular.min.js"></script>
+<script>
+
+function Aaa($scope,$timeout){
+	$scope.name = 'hello';
+}
+
+</script>
+</head>
+
+<body>
+
+<div ng-controller="Aaa">
+	<input type="text" ng-model="name">
+	<p>{{name}}</p>
+</div>
+
+</body>
+</html>
