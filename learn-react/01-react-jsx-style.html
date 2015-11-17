@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React-JSX-Style</title>
+    <script src="http://cdn.bootcss.com/react/0.13.3/react.min.js"></script>
+    <script src="http://cdn.bootcss.com/react/0.13.3/JSXTransformer.js"></script>
+    <style>
+    .red { color: red; }
+    </style>
+</head>
+<body>
+    <div id="container1"></div>
+    <br>
+    <div id="container2"></div>
+    <script type="text/jsx">
+    var Hello = React.createClass({
+        render: function() {
+            return <div className="red">Hello {this.props.title} {this.props.name}</div>;
+        }
+    });
+
+    var Test = React.createClass({
+        render: function() {
+            var styleObj = {
+                color: 'green'
+            };
+
+            return <div style={styleObj}>This is Test</div>;
+        }
+    });
+
+    React.render(<Hello name="World" title="Mr" />, document.getElementById('container1'));
+    React.render(<Test />, document.getElementById('container2'));
+    </script>
+</body>
+</html>
