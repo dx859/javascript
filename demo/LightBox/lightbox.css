@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/* css reset */
+body, ul, p, dl, dt, dd, h1, h2, h3, p, ul, li { margin: 0; padding: 0; }
+
+ul, ol { list-style: none; }
+
+a { text-decoration: none; }
+
+.container { margin: 30px; }
+.container h1 { font-size: 18px; margin-top: 20px; }
+
+/* lightbox 样式 */
+#G-lightbox-mask { position: fixed; left: 0; top: 0; bottom: 0; right: 0; background-color: #000; opacity: 0.5; z-index: 100; display: none; }
+
+#G-lightbox-popup { position: fixed; left: 50%; top: 0; margin-left: -200px; z-index: 101; width: 400px; display: none; }
+#G-lightbox-popup .lightbox-pic-view { position: relative; border: 5px solid #fff; border-radius: 3px; overflow: hidden; background: #fff url(icon/loading.gif) no-repeat center center; }
+#G-lightbox-popup .lightbox-pic-view .lightbox-btn { position: absolute; top: 0; width: 40%; height: 100%; z-index: 1; }
+#G-lightbox-popup .lightbox-pic-view .lightbox-prev-btn { left: 0; }
+#G-lightbox-popup .lightbox-pic-view .lightbox-next-btn { right: 0; }
+#G-lightbox-popup .lightbox-pic-view .lightbox-prev-btn-show { background: url(icon/prev.png) no-repeat left center; cursor: pointer; }
+#G-lightbox-popup .lightbox-pic-view .lightbox-next-btn-show { background: url(icon/next.png) no-repeat right center; cursor: pointer; }
+#G-lightbox-popup .lightbox-pic-view .lightbox-image { display: block; width: 100%; }
+#G-lightbox-popup .lightbox-pic-caption { position: relative; background-color: rgba(0, 0, 0, 0.5); margin: 0 5px; margin-top: -60px; }
+#G-lightbox-popup .lightbox-pic-caption .lightbox-caption-area { padding: 10px 5px; color: #fff; }
+#G-lightbox-popup .lightbox-pic-caption .lightbox-of-index { color: #999; }
+#G-lightbox-popup .lightbox-pic-caption .lightbox-close-btn { position: absolute; right: 10px; top: 13px; width: 27px; height: 27px; background: url(icon/close.png) no-repeat center center; }
+
+/*# sourceMappingURL=lightbox.css.map */
