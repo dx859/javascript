@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React-with-mock</title>
+    <script src="https://cdn.bootcss.com/react/0.14.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/0.14.2/react-dom.min.js"></script> 
+    <script src="https://cdn.bootcss.com/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+
+    var InputToggle = React.createClass({
+        getInitialState: function() {
+            return {
+                isShow: false
+            }
+        },
+        handleClick: function() {
+            this.state.isShow = !this.state.isShow
+            this.props.onShowInput(this.state.isShow);
+        },
+
+        render: function() {
+
+            return (
+                <input onClick={this.handleClick} type="button" value="显示|隐藏"/>
+            );
+        }
+    });
+
+    var DivContent = React.createClass({
+
+        render: function() {
+            var style = {
+                marginTop: '5px',
+                border: '1px solid #d7d9d7',
+                width: '200px',
+                height: '300px',
+                padding: '5px',
+                display: this.props.showFlag ? 'block': 'none'
+            }
+
+            return (
+                <div style={style}>这是内容</div>
+            );
+        }
+    });
+
+    var Component = React.createClass({
+        getInitialState: function() {
+            return {
+                isShow: false
+            }
+        },
+
+        handleShowDiv: function(flag) {
+            this.setState({
+                isShow: flag
+            })
+        },
+
+        render: function() {
+            return (
+                <div>
+                    <InputToggle onShowInput={this.handleShowDiv} />
+                    <DivContent showFlag={this.state.isShow}/>
+                </div>
+            );
+        }
+    });
+    ReactDOM.render(
+        <Component />,
+        document.getElementById('example')
+    )
+    
+    </script>
+</body>
+</html>

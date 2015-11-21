@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React-with-mock</title>
+    <script src="https://cdn.bootcss.com/react/0.14.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/0.14.2/react-dom.min.js"></script> 
+    <script src="https://cdn.bootcss.com/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+
+    // 注意： this.props 是只读的
+    var HelloWrold = React.createClass({
+        render: function() {
+
+            return (
+                <p>
+                    <input type="text" placeholder="Your name here"/> !
+                    <br/>
+                    {this.props.date.toLocaleString()}
+                </p>
+            )
+
+        }
+
+    });
+
+    setInterval(function() {
+        ReactDOM.render(
+            <HelloWrold date={new Date()} />,
+            document.getElementById('example')
+        );
+    }, 1000)
+    </script>
+</body>
+</html>

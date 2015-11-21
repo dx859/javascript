@@ -1,5 +1,10 @@
 @charset "utf-8";
 /* css reset */
+/**
+ * sass --watch lightbox.scss:lightbox.css --style compact
+ * @type {Number}
+ */
+
 body, ul, p, dl, dt, dd, h1, h2, h3, p ,ul, li { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
 a { text-decoration: none; }
@@ -61,7 +66,6 @@ a { text-decoration: none; }
 
         .lightbox-image {
             display: block;
-            width: 100%;
         }
     }
 
@@ -70,13 +74,18 @@ a { text-decoration: none; }
         background-color: rgba(0, 0, 0, 0.5);
         margin: 0 5px;
         margin-top: -60px;
+        height: 55px;
+        z-index: 2;
 
         .lightbox-caption-area {
             padding: 10px 5px;
             color: #fff;
+            font-size: 16px;
+            line-height: 20px;
         }
         .lightbox-of-index {
             color: #999;
+            font-size: 14px;
         }
 
         .lightbox-close-btn {

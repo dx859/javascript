@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React-with-mock</title>
+    <script src="https://cdn.bootcss.com/react/0.14.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/0.14.2/react-dom.min.js"></script> 
+    <script src="https://cdn.bootcss.com/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+    var EpisodeRow = React.createClass({
+        render: function() {
+            return (
+                <tr>
+                    <td>{this.props.episode.title}</td>
+                    <td><a href="#">view</a></td>
+                </tr>
+            );
+        }
+    });
+
+    var EpisodeTable = React.createClass({
+
+        render: function() {
+            var props = this.props;
+            var rows = props.episodes
+            .filter(function(episode) {
+                return episode.title.toLowerCase().indexOf(props.filterText.toLowerCase()) > -1;
+            })
+            .map(function(episode) {
+                return <EpisodeRow key={episode.title} episode={episode} />;
+            });
+
+            return (
+                <div className="row spacer">
+                    <div className="col-lg-4 col-lg-offset-4">
+                      <table width="100%">
+                          <thead>
+                              <tr>
+                                  <th>Title</th>
+                                  <th>Link</th>
+                              </tr>
+                          </thead>
+                          <tbody>{rows}</tbody>
+                      </table>
+                    </div>
+                </div>
+            )
+        }
+    });
+
+    var SearchBar = React.createClass({
+        handleChange: function() {
+            this.props.onFilterInput(
+                this.refs.filterTextInput.getDOMNode().value
+            );
+        },
+
+        render: function() {
+            return (
+                <div className="row">
+                  <div className="col-lg-4 col-lg-offset-4">
+                      <input type="search" ref="filterTextInput" onChange={this.handleChange} value={this.props.filterText} className="form-control" placeholder="Search for episode" />
+                  </div>
+                </div>
+            );
+        }
+    });
+
+    var FilterableEpisodeTable = React.createClass({
+        getInitialState: function() {
+            return {
+                filterText: '123'  
+            }
+        },
+
+        handleFilterInput: function(filterText) {
+            this.setState({
+                filterText: filterText
+            });
+        },
+
+        render: function() {
+            return (
+                <div className="spacer">
+                    <SearchBar onFilterInput={this.handleFilterInput} filterText={this.state.filterText} />
+                    <EpisodeTable filterText={this.state.filterText} episodes={this.props.episodes} />
+                </div>
+            );
+        }
+    });
+
+
+    var episodes = [{
+          title : "Angular with Yeoman",
+      },{
+          title : "Using D3 with Rickshaw and Angular",
+      },{
+          title : "Canvas with paper.js",
+      },{
+          title : "Express.js middleware",
+      },{
+          title : "MEAN stack - episode 1",
+      }
+    ];
+
+    ReactDOM.render(<FilterableEpisodeTable episodes={episodes} />, document.getElementById('example'));
+
+
+    </script>
+</body>
+</html>

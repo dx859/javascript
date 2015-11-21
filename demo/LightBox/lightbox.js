@@ -13,10 +13,10 @@ var LightBox = function() {
     // 渲染剩余的DOM，并且插入到BODY
     this.renderDOM();
 
-    this.picViewArea = this.popupWin.find('lightbox-pic-view'); // 图片预览区域
+    this.picViewArea = this.popupWin.find('.lightbox-pic-view'); // 图片预览区域
     this.popupPic = this.popupWin.find('img.lightbox-image'); // 图片
     this.picCaptionArea = this.popupWin.find('div.lightbox-pic-caption'); // 图片描述区域
-    this.nextBtn = this.popupWin.find('span.lightbox-prev-btn');
+    this.prevBtn = this.popupWin.find('span.lightbox-prev-btn');
     this.nextBtn = this.popupWin.find('span.lightbox-next-btn');
     this.captionText = this.popupWin.find('p.lightbox-pic-desc');
     this.currentIndex = this.popupWin.find('span.lightbox-of-index');// 
@@ -41,14 +41,86 @@ var LightBox = function() {
         self.initPopup($(this));
 
     });
+
+    // 关闭弹出
+    this.popupMask.click(function() {
+        $(this).fadeOut();
+        self.popupWin.fadeOut();
+    });
+    this.closeBtn.click(function() {
+        self.popupMask.fadeOut();
+        self.popupWin.fadeOut();
+    });
+
+    // 绑定上下切换按钮事件
+    this.flag = true;
+    this.nextBtn.hover(function(){
+        if(!$(this).hasClass('disabled') && self.groupData.length>1) {
+            $(this).addClass('lightbox-next-btn-show');
+        }
+    },function(){
+        if(!$(this).hasClass('disabled') && self.groupData.length>1) {
+            $(this).removeClass('lightbox-next-btn-show');
+        }
+    }).click(function(e) {
+        if(!$(this).hasClass('disabled') && self.flag) {
+            self.flag = false;
+            e.stopPropagation();
+            self.goto('next')
+        }
+    });
+
+    this.prevBtn.hover(function(){
+        // console.log(self.index)
+        if(!$(this).hasClass('disabled') && self.groupData.length>1) {
+            $(this).addClass('lightbox-prev-btn-show');
+        }
+    },function(){
+        if(!$(this).hasClass('disabled') && self.groupData.length>1) {
+            $(this).removeClass('lightbox-prev-btn-show');
+        }
+    }).click(function(e) {
+        if(!$(this).hasClass('disabled') && self.flag) {
+            self.flag = false;
+            e.stopPropagation();
+            self.goto('prev');
+        }
+    });
 }
 
 LightBox.prototype = {
     constructor: LightBox,
 
+    goto: function(dir) {
+        if(dir === 'next') {
+            this.index++;
+            if (this.index >= this.groupData.length-1) {
+                this.nextBtn.addClass('disabled').removeClass('lightbox-next-btn-show');
+            };
+            if (this.index != 0) {
+                this.prevBtn.removeClass('disabled');
+            };
+            var src = this.groupData[this.index].src;
+            this.loadPicSize(src)
+        } else if(dir === 'prev') {
+            this.index--;
+            if (this.index <= 0) {
+                this.prevBtn.addClass('disabled').removeClass('lightbox-prev-btn-show');
+            };
+            if (this.index != this.groupData.length-1) {
+                this.nextBtn.removeClass('disabled');
+            }
+            var src = this.groupData[this.index].src;
+            this.loadPicSize(src)
+        }
+    },
+
     showMaskAndPopup: function(sourceScr, currentId) {
         var self = this;
         
+        this.popupPic.hide();
+        this.picCaptionArea.hide();
+
         this.popupMask.fadeIn();
         
         var winWidth = $(window).width(),
@@ -63,15 +135,111 @@ LightBox.prototype = {
         var viewHeight = winHeight/2 + 10;
         this.popupWin.css({
             width: winWidth/2 + 10,
-            height: winHeight/2 + 10,
+            height: viewHeight,
             marginLeft: -(winWidth/2 + 10)/2,
             top: -viewHeight
         })
         .animate({
-            top: (winWidth - viewHeight)/2
+            top: (winHeight - viewHeight)/2
         }, function() {
+            self.loadPicSize(sourceScr);
+        });
+
+        // 根据当前点击元素ID获取当前组别里面的索引
+        this.index = this.getIndexOf(currentId);
+        
+        var groupDataLength = this.groupData.length;
+        
+        if (groupDataLength > 1) {
+            if (this.index === 0) {
+                this.prevBtn.addClass('disabled');
+                this.nextBtn.removeClass('disabled');
+            } else if (this.index === this.groupData.length-1) {
+                this.nextBtn.addClass('disabled');
+                this.prevBtn.removeClass('disabled');
+            } else {
+                this.nextBtn.removeClass('disabled');
+                this.prevBtn.removeClass('disabled');
+            }
+        }
+    },
+
+    loadPicSize: function(sourceScr) {
+        var self = this;
+        self.popupPic.css({width: 'auto',height: 'auto'}).hide()
+
+        this.preLoadImg(sourceScr, function() {
+            self.popupPic.attr('src', sourceScr);
+            var picWidth = self.popupPic.width(),
+                picHeight = self.popupPic.height();
+
+            self.changePic(picWidth, picHeight);
+        })
+    },
+
+    changePic: function(width, height) {
+
+        var self = this,
+            winWidth = $(window).width(),
+            winHeight = $(window).height();
+        // 如果图片的宽高大于浏览器视口的宽高比例，看下是否溢出
+        var scale = Math.min(winWidth/(width+10),winHeight/(height+10), 1);
+        width = width*scale;
+        height = height*scale;
+
+        this.picViewArea.animate({
+            width: width-10,
+            height: height-10
+        });
+        this.popupWin.animate({
+            width: width,
+            height: height,
+            marginLeft: -(width/2),
+            top: (winHeight - height)/2
+        }, function() {
+            self.popupPic.css({
+                width: width-10,
+                height: height-10
+            }).fadeIn();
+
+            self.picCaptionArea.fadeIn();
+            self.flag = true;
+        });
+
+        // 设置描述文字和当前索引
+        this.captionText.text(this.groupData[this.index].caption);
+        this.currentIndex.text("当前索引: "+(this.index+1)+" of "+this.groupData.length);
+
+    },
+
+    preLoadImg: function(src,callback) {
+        var img = new Image();
+        if (!!window.ActiveXObject) {
+            img.onreadystatechange = function() {
+                if (this.readyState == 'complete') {
+                    callback();
+                }
+            }
+        } else {
+            img.onload = function() {
+                callback();
+            }
+        }
+
+        img.src = src;
+    },
+
+    getIndexOf: function(currentId) {
+        var index = 0;
+
+        $(this.groupData).each(function(i) {
+            index = i;
+            if (this.id === currentId)
+                return false;
             
         });
+
+        return index;
     },
 
     initPopup: function(currentObj) {
@@ -101,12 +269,12 @@ LightBox.prototype = {
     renderDOM: function() {
         var strDom = '<div class="lightbox-pic-view">' +
             '<span class="lightbox-btn lightbox-prev-btn"></span>' +
-            '<img class="lightbox-image" src="images/1-1.jpg">' +
+            '<img class="lightbox-image" src="">' +
             '<span class="lightbox-btn lightbox-next-btn"></span>' +
             '</div>' +
             '<div class="lightbox-pic-caption">' +
             '<div class="lightbox-caption-area">' +
-            '<p class="lightbox-pic-desc">图片标题</p>' +
+            '<p class="lightbox-pic-desc"></p>' +
             '<span class="lightbox-of-index">当前索引：0 of 0</span>' +
             '</div>' +
             '<span class="lightbox-close-btn"></span>' +

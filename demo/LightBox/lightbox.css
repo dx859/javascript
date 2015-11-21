@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /* css reset */
+/** sass --watch lightbox.scss:lightbox.css --style compact @type {Number} */
 body, ul, p, dl, dt, dd, h1, h2, h3, p, ul, li { margin: 0; padding: 0; }
 
 ul, ol { list-style: none; }
@@ -19,10 +20,10 @@ a { text-decoration: none; }
 #G-lightbox-popup .lightbox-pic-view .lightbox-next-btn { right: 0; }
 #G-lightbox-popup .lightbox-pic-view .lightbox-prev-btn-show { background: url(icon/prev.png) no-repeat left center; cursor: pointer; }
 #G-lightbox-popup .lightbox-pic-view .lightbox-next-btn-show { background: url(icon/next.png) no-repeat right center; cursor: pointer; }
-#G-lightbox-popup .lightbox-pic-view .lightbox-image { display: block; width: 100%; }
-#G-lightbox-popup .lightbox-pic-caption { position: relative; background-color: rgba(0, 0, 0, 0.5); margin: 0 5px; margin-top: -60px; }
-#G-lightbox-popup .lightbox-pic-caption .lightbox-caption-area { padding: 10px 5px; color: #fff; }
-#G-lightbox-popup .lightbox-pic-caption .lightbox-of-index { color: #999; }
+#G-lightbox-popup .lightbox-pic-view .lightbox-image { display: block; }
+#G-lightbox-popup .lightbox-pic-caption { position: relative; background-color: rgba(0, 0, 0, 0.5); margin: 0 5px; margin-top: -60px; height: 55px; z-index: 2; }
+#G-lightbox-popup .lightbox-pic-caption .lightbox-caption-area { padding: 10px 5px; color: #fff; font-size: 16px; line-height: 20px; }
+#G-lightbox-popup .lightbox-pic-caption .lightbox-of-index { color: #999; font-size: 14px; }
 #G-lightbox-popup .lightbox-pic-caption .lightbox-close-btn { position: absolute; right: 10px; top: 13px; width: 27px; height: 27px; background: url(icon/close.png) no-repeat center center; }
 
 /*# sourceMappingURL=lightbox.css.map */

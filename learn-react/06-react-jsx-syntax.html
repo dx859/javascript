@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>React-with-mock</title>
+    <script src="https://cdn.bootcss.com/react/0.14.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/0.14.2/react-dom.min.js"></script> 
+    <script src="https://cdn.bootcss.com/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+    <div id="example1"></div>
+    <div id="example2"></div>
+    <script type="text/babel">
+
+    /*
+    注意:
+        由于 JSX 就是 JavaScript，一些标识符像 class 和 for 不建议作为 XML 属性名。作为替代，React DOM 使用 className 和 htmlFor 来做对应的属性。
+     */
+    // 要渲染 HTML 标签，只需在 JSX 里使用小写字母开头的标签名。
+    var myDivElement = <div className="foo">111</div>;
+    ReactDOM.render(myDivElement, document.getElementById('example1'));
+
+    // 要渲染 React 组件，只需创建一个大写字母开头的本地变量。
+    var MyComponent = React.createClass({
+        render: function() {
+            return (<div>Hello Mr {this.props.name}</div>);
+        }
+    });
+    // 要使用 JavaScript 表达式作为属性值，只需把这个表达式用一对大括号 ({}) 包起来，不要用引号 ("")。
+    var myElement = <MyComponent name={'World'} />;
+    ReactDOM.render(myElement, document.getElementById('example2'));
+
+    
+    </script>
+</body>
+</html>
