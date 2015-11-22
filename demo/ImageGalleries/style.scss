@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+/* css 重置 */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #fff;
+    color: #555;
+    font-family: 'Avenir Next', 'Lantinghei SC';
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+    width: 100%;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    margin-top: -300px;
+    background-color: #333;
+    overflow: hidden;
+    -webkit-perspective: 800px;
+}
+
+
+/* 海报样式 */
+
+.photo {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    margin: -160px 0 0 -130px;
+    width: 260px;
+    height: 320px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .01);
+    -webkit-transform: translate3d(0,0,0);
+    -webkit-transition: all .5s;
+    &.photo-front .photo-wrap {
+        -webkit-transform: translate(0px, 0px) rotateY(0deg);
+    }
+    &.photo-back .photo-wrap {
+        -webkit-transform: translate(260px, 0px) rotateY(180deg);
+    }
+    &.photo-center {
+        left: 50%;
+        top: 50%;
+        margin: -160px 0 0 -130px;
+        z-index: 999;
+    }
+    .photo-wrap {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .5s;
+        -webkit-transform-origin: 0% 50%;
+        -webkit-transform-style: preserve-3d;
+    }
+    .side {
+        width: 100%;
+        height: 100%;
+        background-color: #eee;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        -webkit-backface-visibility: hidden;
+    }
+    .side-front {
+        -webkit-transform: rotateY(0deg);
+        .image {
+            width: 100%;
+            height: 250px;
+            line-height: 250px;
+            overflow: hidden;
+            img {
+                width: 100%;
+            }
+        }
+        .caption {
+            text-align: center;
+            font-size: 16px;
+            line-height: 50px;
+        }
+    }
+    .side-back {
+        -webkit-transform: rotateY(180deg);
+        .desc {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5em;
+        }
+    }
+}
+
+
+/* 控制按钮的样式 */
+
+.nav {
+    position: absolute;
+    left: 10%;
+    bottom: 20px;
+    z-index: 999;
+    width: 80%;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #fff;
+    // 普通样式
+    .i {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        text-align: center;
+        background-color: #aaa;
+        border-radius: 50%;
+        -webkit-transform: scale(.48);
+        -webkit-transition: all .5s;
+    }
+    .i:after {
+        content: "➹";
+        font-size: 20px;
+        display: inline-block;
+        line-height: 30px;
+        text-align: center;
+        color: #fff;
+        opacity: 0;
+    }
+    
+    // 选中的样式
+    .i-current {
+        -webkit-transform: scale(1);
+        &:after {
+            opacity: 1;
+        }
+    }
+    .i-back {
+        -webkit-transform: rotateY(-180deg);
+        background-color: #555;
+    }
+    
+}

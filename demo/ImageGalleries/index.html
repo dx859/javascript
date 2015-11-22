@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>海报画廊</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onselectstart="return false">
+<!-- 
+
+div.photo 负责位移，旋转（平面上xy旋转）
+div.photo-wrap 负责3D翻转（正反面切换）
+
+.photo-wrap : -webkit-backface-visibility: hidden; // 当元素不面向屏幕时候隐藏
+            : -webkit-transform-style: preserve-3d; // 支持子元素的3d效果
+
+.side :  -webkit-transform: translate(0px,0px) rotateY9(0deg)
+
+transition: property duration timing-function delay;
+
+-->
+    <div class="wrap" id="wrap">
+        <!-- photo 负责平移、旋转 -->
+        <div id="photo_{{index}}" class="photo photo-front" onclick="turn(this)">
+            <!-- photo-wrap 负责翻转 -->
+            <div class="photo-wrap">
+                <div class="side side-front">
+                    <p class="image"><img my-src="../images/gallery/{{img}}" alt=""></p>
+                    <p class="caption">{{caption}}</p>
+                </div>
+                <div class="side side-back">
+                    <p class="desc">{{desc}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
