@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>isArray</title>
+</head>
+<body>
+  <script type="text/javascript">
+  var a = {"name": "zhangsan", "age": "lisi", "genter" : "lisi"};
+  var b = ["name", "zhangsan"]
+
+  console.log(Array.isArray(a), Array.isArray(b));
+
+
+
+
+
+  console.log(filterTool(a, function(value, key) {
+
+    return key == "age";
+  }))
+
+
+
+
+
+  function filterTool( oriArr, fn, context ) {
+    var arr = [];
+    if (Array.isArray(oriArr)) {
+      for (var i=0, length=oriArr.length; i<length; i++) {
+        fn.call(context, oriArr[i], i, oriArr) && arr.push(oriArr[i]);
+      }
+    } else {
+      arr = {};
+
+      for (var attr in oriArr) {
+        fn.call(context, oriArr[attr], attr, oriArr) && (arr[attr]= oriArr[attr]);
+      }
+    }
+    
+    return arr;
+  }
+  </script>
+</body>
+</html>

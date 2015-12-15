@@ -1,2 +1,5 @@
 demo/images
 *cache
+*node_modules
+images/
+*node_modules

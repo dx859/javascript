@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>forEach</title>
+  <script src="../angular/angular.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+  var values = {name: '张三', gender: '男'};
+  var log1 = [];
+  var log2 = [];
+
+  angular.forEach(values, function(value, key){
+    this.push(key + ':' + value);
+  }, log1);
+  
+  angular.forEach(values, function(value, key, values){
+    this.push(key + '=' + values[key]);
+  }, log2);
+
+  console.log(log1);
+  console.log(log2);
+  </script>
+</body>
+</html>
