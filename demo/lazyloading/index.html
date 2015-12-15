@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+  <title>lazyloading</title>
+  <script src="zepto.min.js"></script>
+  <style type="text/css">
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul,
+  ol {
+    list-style: none;
+  }
+  
+  li {
+    background-color: #d7d9d7;
+    margin-bottom: 60px;
+  }
+  
+  li>img {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    opacity: 0;
+    transition:opacity .6s;
+  }
+
+  </style>
+</head>
+
+<body>
+  <ul id="images">
+  </ul>
+  <script type="text/javascript">
+  $(function() {
+    var num = 0;
+    var poll = null;
+    var data = {};
+    var oUl = document.getElementById('images');
+    var aImg = [];
+    var API = 'http://m.365tmm.com';
+    var url = API + '/index.php?r=api/shops/selected';
+    $.get(url, function(d) {
+      data = JSON.parse(d);
+      console.log(data);
+      renderTpl(data.data.list_data);
+
+      render();
+      window.addEventListener('scroll', debounceOrThrottle, false);
+    });
+
+    function renderTpl(data) {
+      var fragment = document.createDocumentFragment();
+      for (var i = 0; i < data.length; i++) {
+        var img = new Image();
+        var li = document.createElement('li');
+        li.style.height = Math.ceil(document.documentElement.clientWidth *2/3) +'px';
+        img.setAttribute('data-src',data[i].image);     
+        li.appendChild(img);
+        aImg.push(img);
+        fragment.appendChild(li);
+      }
+
+      oUl.appendChild(fragment);
+    }
+
+    function loadImg(img) {
+      img.onload = function() {
+        var _this = this;
+        setTimeout(function(){
+          _this.style.opacity = 1;
+          
+        },0)
+      }
+    }
+
+    
+    // window.addEventListener('load', debounceOrThrottle, false);
+    function render() {
+      for (var i = 0; i < aImg.length; i++) {
+        if (aImg[i].getBoundingClientRect().top <= document.documentElement.clientHeight + 30) {
+          aImg[i].src = aImg[i].getAttribute('data-src');
+          aImg[i].onload = function() {
+            this.style.opacity = 1;
+          }
+          aImg.splice(i,1);
+          i--;
+        }
+      }
+
+      if (aImg.length === 0) {
+        window.removeEventListener('scroll', debounceOrThrottle);
+      }
+    }
+
+    function debounceOrThrottle() {
+      if (!!poll) {
+        return;
+      }
+      
+      clearTimeout(poll);
+      poll = setTimeout(function() {
+        render();
+        poll = null;
+      }, 250)
+    }
+
+  })
+  </script>
+</body>
+
+</html>
