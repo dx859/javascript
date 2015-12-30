@@ -9,7 +9,7 @@ module.exports = function(grunt) {
       server: {
         options: {
           // 服务器端口号
-          port: 8888,
+          port: 8877,
           // 服务器地址(可以使用主机名localhost，也能使用IP)
           hostname: '*',
           // 物理路径(默认为. 即根目录) 注：使用'.'或'..'为路径的时，可能会返回403 Forbidden. 此时将该值改为相对路径 如：/grunt/reloard。
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         },
         // '**' 表示包含所有的子目录
         // '*' 表示包含所有的文件
-        files: ['**']
+        files: ['learn-angular/**']
       }
     }
   }); // grunt.initConfig配置完毕

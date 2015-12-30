@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Directives Talking to Controllers</title>
+  <style>
+  body {
+    font-family: "microsoft yahei"
+  }
+  </style>
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.css" rel="stylesheet">
+  <script src="../angular/angular.js"></script>
+  <script src="14-DirectivesTalking2Controllers.js"></script>
+</head>
+
+<body>
+  <lessonnav id="navbar" ng-controller="lessonNavCtrl"></lessonnav>
+  <div ng-app="twitterApp">
+    <div ng-controller="AppCtrl">
+      <div enter="deleteTweets()">Roll over to load more tweets</div>
+    </div>
+  </div>
+</body>
+
+</html>
