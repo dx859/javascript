@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Directives to Directive Communication</title>
+  <style>
+  body {
+    font-family: "microsoft yahei"
+  }
+  .button {
+    border-radius: 5px;
+    border: 1px solid blue;
+    background-color: blue;
+    color: #fff;
+    padding: 4px 8px;
+  }
+  </style>
+  <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.css" rel="stylesheet">
+  <script src="../angular/angular.js"></script>
+  <script src="15-Directive2DirectiveCommunication.js"></script>
+</head>
+
+<body>
+  <div ng-app="superApp">
+    <superhero flight speed strength>Superman</superhero>
+    <superhero speed>The Flash</superhero>
+    <superhero strength>The Hulk</superhero>
+  </div>
+</body>
+
+</html>
