@@ -7,10 +7,9 @@
 <body>
   <script type="text/javascript">
   var a = {"name": "zhangsan", "age": "lisi", "genter" : "lisi"};
-  var b = ["name", "zhangsan"]
+  var b = ["name", "zhangsan"];
 
   console.log(Array.isArray(a), Array.isArray(b));
-
 
 
 
@@ -18,7 +17,7 @@
   console.log(filterTool(a, function(value, key) {
 
     return key == "age";
-  }))
+  }));
 
 
 
