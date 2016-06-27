@@ -1,4 +1,4 @@
-import Game from './Game';
+import Game from '../src/Game';
 import { assert } from 'chai';
 
 describe('Game', () => {
