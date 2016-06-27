@@ -1,5 +1,0 @@
-<?PHP
-
-	echo 'hello';
-
-?>
