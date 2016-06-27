@@ -1,3 +1,4 @@
 *cache
-*images
-*_modules
+images
+node_modules
+.tmp
