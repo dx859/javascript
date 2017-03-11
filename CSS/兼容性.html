@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>兼容性</title>
+</head>
+<body>
+<xmp>
+1. H5标签兼容
+   引入html5shiv.js文件
+   <script src="js/html5shiv.js"></script>
+
+2. 元素浮动之后,能设置宽度的话就给元素加宽度.如果需要宽度是内容撑开,就给它里边的块元素加上浮动;
+
+3. 第一块元素浮动,第二块元素加margin值等于第一块元素,在IE6下会有间隙问题;
+
+4. IE6下子元素超出父级宽高，会把父级的宽高撑开
+
+5. p 包含块元素嵌套规则
+
+6. IE6 最小高度问题(IE6下最小高度19px 解决方案：overflow:hidden;)
+
+7. IE6 双边距(针对ie6、7添加display:inline)
+
+8. li里元素都浮动 li 在IE6 7  下方会产生4px间隙问题 (针对ie6，7添加vertical-align: top;)
+
+9. 浮动元素之间注释，导致多复制一个文字问题
+
+10.IE6 7 父级元素的overflow:hidden 是包不住子级的relative
+
+11.IE6下绝对定位元素父级宽高是奇数,绝对定位元素的right和bottom值会有1px的偏差
+
+12.IE6下绝对定位元素和浮动元素并列绝对定位元素消失
+
+13.IE6 下input的空隙
+
+14.IE6 下 输入类型表单控件背景问题
+
+15.浮动元素和绝对定位元素是同级的话定位元素就会消失。所以咱们只要让他们俩不处于同级就可以避免这个bug。
+
+16.css hack
+  \9 所有的IE10及之前
+  + * IE7及ie7以下的ie浏览器认识 
+  _IE6及ie6的ie浏览器认识
+
+</xmp>
+</body>
+</html>

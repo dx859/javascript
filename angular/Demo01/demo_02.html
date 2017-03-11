@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>控制器</title>
+  <script src="//cdn.bootcss.com/angular.js/1.6.2/angular.min.js"></script>
+
+</head>
+<body ng-controller="mainController">
+  <h1>{{title}}</h1>
+
+  <script>
+    // 创建模块
+    var m1 = angular.module('m1', []);
+    // 控制器
+    m1.controller('mainController', function($scope) {
+      $scope.title = "Angular";
+    });
+    // 启动应用，模块
+    angular.bootstrap(document, ['m1']);
+  </script>
+  
+
+</body>
+</html>

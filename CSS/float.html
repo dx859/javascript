@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>float</title>
+</head>
+<body>
+<xmp>
+float的特性：
+1、块在一排显示
+2、内联支持宽高
+3、默认内容撑开宽度
+4、脱离文档流
+5、提升层级半层
+
+清除浮动的方法
+1、加高度 (扩展性不好)
+2、给父级加浮动 (页面中所有元素都加浮动，margin左右自动失效（floats bad ！）)
+3、.inline-block 清浮动方法 (margin左右auto失效)
+4、空标签清除浮动 (IE6 最小高度 19px；（解决后IE6下还有2px偏差）)
+5、.br清浮动  (不符合工作中：结构、样式、行为，三者分离的要求)
+6、.after伪类 清浮动方法（现在主流方法）
+   .clear:after{content:'';display:block;clear:both;}
+   .clear{zoom:1;} （zoom 缩放：触发 IE下 haslayout，使元素根据自身内容计算宽高。）
+7、.overflow:hidden 清浮动方法；问题：需要配合 宽度 或者 zoom 兼容IE6 IE7；
+    overflow:  scroll | auto | hidden；
+    overflow:hidden;溢出隐藏（裁刀！）
+
+</xmp>
+</body>
+</html>

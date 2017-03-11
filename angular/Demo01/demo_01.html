@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>模块</title>
+  <script src="//cdn.bootcss.com/angular.js/1.6.2/angular.min.js"></script>
+</head>
+<body>
+
+  <script>
+    // 创建模块
+    var m1 = angular.module('m1', []);
+
+    //console.log(m1);
+
+    // 通过模块对象下的value方法创建了一个模块变量，名称是username，值是 妙味
+    m1.value('username', 'angular');
+
+    m1.run(function() {
+        console.log('m1 模块被启动了')
+    });
+
+    // 创建一个依赖 m1 模块的 m2 模块
+    // 依赖注入
+    angular.module('m2', ['m1']).run(function(username){
+        console.log(username)
+    });
+
+    // 启动应用，模块
+    angular.bootstrap( document, ['m2'] );
+  </script>
+  
+</body>
+</html>
