@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片文字垂直居中</title>
+	<style type="text/css">
+	* {margin: 0; padding: 0;}
+	.box {width: 400px; min-height: 200px; border: 1px solid #d7d9d7; margin: 50px auto;}
+	.box > p {display: inline-block; width: 160px; margin-left: 20px;vertical-align: middle;}
+	.box >img {vertical-align: middle}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<p>文字</p>
+		<img src="img1.jpg" width="150">
+	</div>
+	<div class="box">
+		<p>文字<br>文字<br>文字</p>
+		<img src="img1.jpg" width="150">
+	</div>
+	<div class="box">
+		<p>文字<br>文字<br>文字<br>文字<br>文字<br>文字</p>	
+		<img src="img1.jpg" width="150">
+	</div>
+</body>
+</html>
