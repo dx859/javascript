@@ -1,0 +1,22 @@
+{
+  "name": "webpack-demo",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "dx859 <daixi859@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/dx859/JavaScriptNote",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "zepto": "^1.1.6",
+    "jquery": "^2.2.1"
+  }
+}
