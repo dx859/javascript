@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <style type="text/css">
+    #div {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: red;
+    }
+    </style>
+    <script src="Drag.js"></script>
+    <script type="text/javascript">
+    window.onload = function () {
+        oDiv = document.getElementById('div');
+        var drag = new Drag(oDiv);
+        drag.fnDown();
+    }
+    </script>
+
+</head>
+<body>
+    <div id="div"></div>
+</body>
+</html>
