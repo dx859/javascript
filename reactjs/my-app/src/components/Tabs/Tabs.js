@@ -64,21 +64,21 @@ export default class Tabs extends React.Component {
     const { classPrefix, children } = this.props;
 
     return (<TabNav
-            key="tabBar"
-            classPrefix={classPrefix}
-            onTabClick={this.handleTabClick}
-            panels={children}
-            activeIndex={this.state.activeIndex}/>)
+              key="tabBar"
+              classPrefix={classPrefix}
+              onTabClick={this.handleTabClick}
+              panels={children}
+              activeIndex={this.state.activeIndex}/>)
   }
 
   renderTabContent() {
     const { classPrefix, children } = this.props;
 
     return (<TabContent
-            key="tabcontent"
-            classPrefix={classPrefix}
-            activeIndex={this.state.activeIndex}
-            panels={children}/>);
+              key="tabcontent"
+              classPrefix={classPrefix}
+              activeIndex={this.state.activeIndex}
+              panels={children}/>);
   }
 
   render() {
