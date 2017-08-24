@@ -1,8 +1,0 @@
-{
-    "tabSize":4,
-    "insertSpaces" : true,
-
-    "semicolon":true,
-    "ternaryline":true,
-    "methodchain":"chain"
-}

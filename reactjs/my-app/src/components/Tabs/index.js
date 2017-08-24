@@ -1,20 +1,18 @@
 import React, { Component, PropTypes, cloneElement } from 'react';
 
 class Tabs extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {};
+    this.state = {};
 
-    }
+  }
 
-    render() {
-        return(
-            <div>
-                
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div></div>
+    );
+  }
 }
 
 Tabs.propTypes = {
