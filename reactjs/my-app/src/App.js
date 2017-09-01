@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
-import NativeEvent from './form/FormDemo';
+import ListOfWords from './performance/ListOfWords'
 import './App.css';
 
 class App extends Component {
-  handleClick(e, arg) {
-    console.log(e, arg);
+  constructor(props) {
+    super(props);
+    this.state = {
+      words: [],
+    };
+    this.hanldeClick = this.hanldeClick.bind(this);
+  }
+
+  hanldeClick(e) {
+    let value = this.refs.words
+    console.log(value);
   }
 
   render() {
     return (
       <div className="App">
-        <NativeEvent/>
+        <ListOfWords words={this.state.words} />
       </div>
     );
   }

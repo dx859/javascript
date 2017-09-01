@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
+    "immutable": "^3.8.1",
     "prop-type": "^0.0.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -16,5 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "uglify-js-brunch": "^2.10.0"
   }
 }
