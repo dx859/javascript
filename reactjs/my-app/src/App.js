@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import Select from './components/Select'
 import './App.css';
+import CommentListContainer from "./flux/comment/CommentListContainer";
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Select />
+        <CommentListContainer/>
       </div>
     );
   }
