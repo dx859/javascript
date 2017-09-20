@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CommentListPre from "./CommentListPre";
 
-const Promised = (Wrapped) => class extends Component {
+const Promised = (promiseProp, Wrapped) => class extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,14 +16,13 @@ const Promised = (Wrapped) => class extends Component {
       return <span>Loading</span>;
     } else if (this.state.error !== null) {
       return <span>Error: {this.state.error.message}</span>;
-
     } else {
       return <Wrapped {...this.props} {...this.state.value}/>;
     }
   }
 
   componentDidMount() {
-    fetch('/data/comment.json')
+    this.props[promiseProp]
       .then(response => response.json())
       .then(value => this.setState({loading: false, value}))
       .catch(error => this.setState({loading: false, error}))
@@ -33,11 +32,11 @@ const Promised = (Wrapped) => class extends Component {
 
 class CommentListContainer extends Component {
   render() {
-    return <CommentListPre data={data}/>
+    return <CommentListPre comments={this.props.commentList}/>
   }
 }
 
-export default Promised(CommentListContainer);
+export default Promised('comments', CommentListContainer);
 
 
 // export default class CommentListContainer extends Component {

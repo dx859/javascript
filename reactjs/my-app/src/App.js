@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import CommentListContainer from "./flux/comment/CommentListContainer";
+import CommentBox from "./flux/comment/CommentBox";
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <CommentListContainer/>
+        <CommentBox/>
       </div>
     );
   }

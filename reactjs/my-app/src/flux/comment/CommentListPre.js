@@ -5,8 +5,8 @@ export default function CommentListPre({comments}) {
     <ul className="comment-box">
       {comments.map((entry, i) => (
         <li key={`reponse-${i}`} className="comment-item">
-          <p className="comment-item-name">{entry.name}</p>
-          <p className="comment-item-content">{entry.content}</p>
+          <p className="comment-item-name" style={{color: 'red', fontWeight: 'bold'}}>{entry.name}</p>
+          <p className="comment-item-content" style={{paddingLeft: 14}}>{entry.content}</p>
         </li>
       ))}
     </ul>
